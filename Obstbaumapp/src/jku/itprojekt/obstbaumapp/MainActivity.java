@@ -4,7 +4,6 @@ package jku.itprojekt.obstbaumapp;
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.pm.PackageManager.NameNotFoundException;
-import android.graphics.Bitmap;
 import android.view.Menu;
 import android.view.View;
 import android.webkit.GeolocationPermissions;
