@@ -12,6 +12,7 @@ import android.view.View;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -21,11 +22,15 @@ public class MainActivity extends Activity {
 	TextView txterror;
 	Button btnerror;
 	String url;
+	ProgressBar pbProgress;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
+		
+		pbProgress = (ProgressBar)findViewById(R.id.pbProgress1);
+		
 		startBrowser();
 	}
 
@@ -33,7 +38,7 @@ public class MainActivity extends Activity {
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.main, menu);
-		url = "http://linz.pflueckt.at/";
+		//url = "http://linz.pflueckt.at/";
 		return true;
 	}
 
@@ -50,7 +55,7 @@ public class MainActivity extends Activity {
 	}
 	
 	public void reloadPage(){
-		mWebView.loadUrl(url);
+		mWebView.loadUrl("http://obst.linzwiki.at/");
 	}
 
 	public void setSettings() {
@@ -65,6 +70,18 @@ public class MainActivity extends Activity {
 		mWebView.getSettings().setGeolocationEnabled(true);
 
 		mWebView.setWebViewClient(new WebViewClient() {
+
+			@Override
+			public void onPageFinished(WebView view, String url) {
+				pbProgress.setVisibility(View.GONE);
+				super.onPageFinished(view, url);
+			}
+
+			@Override
+			public void onPageStarted(WebView view, String url, Bitmap favicon) {
+				pbProgress.setVisibility(View.VISIBLE);
+				super.onPageStarted(view, url, favicon);
+			}
 
 			@Override
 			public void onReceivedError(WebView view, int errorCode,
