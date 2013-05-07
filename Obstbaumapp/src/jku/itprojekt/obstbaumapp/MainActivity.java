@@ -21,6 +21,7 @@ public class MainActivity extends Activity {
 	WebView mWebView; // Webview which handles the main app
 	TextView txterror;
 	Button btnerror;
+	String url;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -32,6 +33,7 @@ public class MainActivity extends Activity {
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.main, menu);
+		url = "http://linz.pflueckt.at/";
 		return true;
 	}
 	
